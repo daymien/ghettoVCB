@@ -84,7 +84,7 @@ sanityCheck() {
         fi
 
 	ESX_VERSION=$(vmware -v | awk '{print $3}')
-	if [ "${ESX_VERSION}" == "5.0.0" ]; then
+	if [[ "${ESX_VERSION}" == "5.0.0" ]] || [[ "${ESX_VERSION}" == "5.1.0" ]]; then
 		VER=5
         elif [[ "${ESX_VERSION}" == "4.0.0" ]] || [[ "${ESX_VERSION}" == "4.1.0" ]]; then
                 VER=4
@@ -98,11 +98,11 @@ sanityCheck() {
                 fi
         fi
 
-        if [ ! "`whoami`" == "root" ]; then
-		logger "ERROR: This script needs to be executed by \"root\"!"
-		echo "ERROR: This script needs to be executed by \"root\"!"
-                exit 1
-        fi
+#        if [ ! "`whoami`" == "root" ]; then
+#		logger "ERROR: This script needs to be executed by \"root\"!"
+#		echo "ERROR: This script needs to be executed by \"root\"!"
+#                exit 1
+#        fi
 
 	#ensure input file exists
 	if [ ! -f "${CONFIG_FILE}" ]; then
